@@ -40,6 +40,7 @@ const login = `
     <div class="login-form">
         <div>
             <h1>Login dulu gan</h1>
+            <div id="info"></div>
             <div class="content">
                 <div class="input-field">
                     <input type="text" placeholder="Username" autocomplete="nope" id="username">
@@ -113,6 +114,7 @@ const setMain = (userId) => {
     const localScore = document.getElementById("local")
     //const globalScore = document.getElementById("global")
     const logoutButton = document.getElementById("logout")
+    if (userId == 0) { logoutButton.innerHTML = "LOGIN" }
 
     localScore.innerHTML = thisUser.value
     //globalScore.innerHTML = scoreGlobal
@@ -193,6 +195,8 @@ const setLogin = () => {
     const signupButton = document.getElementById("signup-button")
     const guest = document.getElementById("guest")
 
+    const info = document.getElementById("info")
+
     const username = document.getElementById("username")
     const password = document.getElementById("password")
 
@@ -202,9 +206,15 @@ const setLogin = () => {
         let userId = 0;
         let global = 0;
         userList.map((user, id) => { if (username.value == user.username && password.value == user.password) { userFound = true, userId = id } global += user.value })
-        userFound ? setMain(userId) : alert("userNotFound")
+        //userFound ? setMain(userId) : alert("userNotFound")
+        userFound ? setMain(userId) : info.innerHTML = "Sorry cuy kita gak nemu akun mu"
         window.localStorage.setItem("recent", userId)
     }
+
+    setInterval(() => {
+        if (username.value != '' && password.value != '') { loginButton.disabled = false; } 
+        else { loginButton.disabled = true; }
+    }, 100);
 
     loginButton.onclick = () => {
         if (username.value !== '' && password.value !== '') { isUser() }
