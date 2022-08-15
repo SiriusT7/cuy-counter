@@ -202,7 +202,6 @@ body {
 @media screen and (orientation:portrait) {
     body {
         background-color: white;
-        height: 100vh;
     }
     .login-form .action {
         display: flex;
@@ -229,8 +228,6 @@ body {
     }
     .leftfloat {
         position: absolute;
-        margin: 0px 20px;
-        width: 200px;
         bottom: 0;
     }
     #list-score {
@@ -238,6 +235,12 @@ body {
     }
     .actionlogout{
         position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .actionlogout button{
+        width: 80vw;
     }
 }
 @media screen and (orientation:landscape) {
